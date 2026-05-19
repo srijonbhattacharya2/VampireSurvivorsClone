@@ -11,7 +11,7 @@ namespace Vampire
         [SerializeField] private Material backgroundMaterial;
         private Vector2 previousResetPosition = Vector2.zero;
         private Vector2 resetOffset = Vector2.zero;
-        private float resetDistance = 15;
+        private float resetDistance = 6;
         private float resetDuration = 5;
 
         void Awake()
@@ -19,7 +19,7 @@ namespace Vampire
             // Determine the screen size in world space so that we can spawn enemies outside of it
             Vector2 bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
             Vector2 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane));
-            Vector3 screenSizeWorldSpace = new Vector3(topRight.x - bottomLeft.x, topRight.y - bottomLeft.y, 1);
+            Vector3 screenSizeWorldSpace = new Vector3(topRight.x - bottomLeft.x + 1, topRight.y - bottomLeft.y + 1, 1);
             transform.localScale = screenSizeWorldSpace;
             GetComponent<MeshRenderer>().sharedMaterial = backgroundMaterial;
         }
